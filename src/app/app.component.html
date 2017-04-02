@@ -1,9 +1,10 @@
-<h1>{{title}}</h1>
-<h2>{{hero.name}} details!</h2>
-<div><label>id: </label>{{hero.id}}</div>
-<div><label>name: </label>{{hero.name}}</div>
+<todo-details [todo]="selectedTodo"></todo-details>
 
-<div>
-  <label>name: </label>
-  <input [(ngModel)]="hero.name" placeholder="name">
-</div>
+<h2>My Heroes</h2>
+<ul class="heroes">
+  <li *ngFor="let todo of todos" (click)="onSelect(todo)" [class.selected]="todo === selectedTodo">
+    <span class="badge">{{todo.id}}</span> {{todo.name}}<span id="close" class="badge" (click)="onComplete(todo)">x</span>
+  </li>
+</ul>
+
+<new-item (newTask)="newTask($event)"></new-item>
