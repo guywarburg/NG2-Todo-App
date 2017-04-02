@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Todo } from './todo';
 
 @Component({
   selector: 'app-root',
@@ -6,29 +7,30 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Tour of Heroes';
-  hero: Hero = {
-    id: 1,
-    name: 'Windstorm'
+  title = 'My Todo List';
+  todos = TODOS;
+  selectedTodo: Todo;
+
+  onSelect(todo: Todo){
+    this.selectedTodo = todo;
+  }
+
+  onComplete(todo: Todo){
+    this.todos = this.todos.filter((item: Todo) => {
+      return item.id !== todo.id;
+    })
+  }
+
+  newTask(task: Todo) {
+    let myId = (this.todos[this.todos.length-1].id + 1);
+    task.id = myId;
+    this.todos.push(task);
   }
 }
 
-
-export class Hero {
-  id: number;
-  name: string;
-}
-
-
-const HEROES: Hero[] = [
-  { id: 11, name: 'Mr. Nice' },
-  { id: 12, name: 'Narco' },
-  { id: 13, name: 'Bombasto' },
-  { id: 14, name: 'Celeritas' },
-  { id: 15, name: 'Magneta' },
-  { id: 16, name: 'RubberMan' },
-  { id: 17, name: 'Dynama' },
-  { id: 18, name: 'Dr IQ' },
-  { id: 19, name: 'Magma' },
-  { id: 20, name: 'Tornado' }
+const TODOS: Todo[] = [
+  { id: 11, name: 'Build Todo App' },
+  { id: 12, name: 'Refactor Todo Item Component' },
+  { id: 13, name: 'Add getTodo Service' },
+  { id: 14, name: 'Add tests' }
 ];
