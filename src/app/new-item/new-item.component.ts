@@ -11,7 +11,7 @@ export class NewItemComponent {
   @Output() newTask: EventEmitter<Todo> = new EventEmitter();
 
   addTask(event: any) {
-    let myTodo = new Todo;
+    const myTodo = new Todo;
     myTodo.name = this.val;
     this.newTask.emit(myTodo);
     this.val = '';

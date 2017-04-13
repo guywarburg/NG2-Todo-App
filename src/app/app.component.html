@@ -1,6 +1,6 @@
 <todo-details [todo]="selectedTodo"></todo-details>
 
-<h2>My Heroes</h2>
+<h2>{{ title }}</h2>
 <ul class="heroes">
   <li *ngFor="let todo of todos" (click)="onSelect(todo)" [class.selected]="todo === selectedTodo">
     <span class="badge">{{todo.id}}</span> {{todo.name}}<span id="close" class="badge" (click)="onComplete(todo)">x</span>
